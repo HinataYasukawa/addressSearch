@@ -2,7 +2,7 @@ import csv
 
 
 def search_address(zip_code):
-    with open("utf_all.csv", "r") as f:
+    with open("utf_all.csv", encoding="utf-8", mode="r") as f:
         reader = csv.reader(f)
         next(reader)
         for row in reader:
