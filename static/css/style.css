@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-panel {
+    width: 40%;
+}
+
+.history-panel {
+    width: 55%;
+}
+
+table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}

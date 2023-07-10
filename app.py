@@ -17,6 +17,7 @@ def find_address(postcode):
 @app.route("/search", methods=["GET"])
 def search():
     postcode = request.args.get("postcode", "")
+    postcode = postcode.replace("-", "")
     address = find_address(postcode)
     search_history.append({"postcode": postcode, "address": address})
     return jsonify({"address": address})

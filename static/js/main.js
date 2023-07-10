@@ -1,24 +1,33 @@
+let searchCount = 0;
+
 async function search() {
     let postcode = document.getElementById('postcode').value;
     let response = await fetch('/search?postcode=' + postcode);
     let data = await response.json();
     document.getElementById('address').textContent = data.address;
     document.getElementById('openMap').style.display = "block";
-    updateHistory();
+
+    searchCount += 1;
+    updateHistory(searchCount, postcode, data.address);
 }
 
-async function updateHistory() {
-    let response = await fetch('/history');
-    let history = await response.json();
-    let historyElement = document.getElementById('history');
+function updateHistory(count, postcode, address) {
+    let historyBody = document.getElementById('historyBody');
+    
+    let tr = document.createElement('tr');
+    let tdCount = document.createElement('td');
+    let tdPostcode = document.createElement('td');
+    let tdAddress = document.createElement('td');
 
-    historyElement.innerHTML = '';
-
-    for (let item of history) {
-        let div = document.createElement('div');
-        div.textContent = item.postcode + ': ' + item.address;
-        historyElement.appendChild(div);
-    }
+    tdCount.textContent = count;
+    tdPostcode.textContent = postcode;
+    tdAddress.textContent = address;
+    
+    tr.appendChild(tdCount);
+    tr.appendChild(tdPostcode);
+    tr.appendChild(tdAddress);
+    
+    historyBody.appendChild(tr);
 }
 
 function openMap() {
