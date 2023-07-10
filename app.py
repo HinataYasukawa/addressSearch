@@ -1,4 +1,7 @@
+from flask import Flask, request, render_template
 import csv
+
+app = Flask(__name__)
 
 
 def search_address(zip_code):
@@ -11,11 +14,17 @@ def search_address(zip_code):
     return "No address found for this postal code."
 
 
-def main():
-    zip_code = input("Please enter a postal code: ")
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
+@app.route("/search", methods=["POST"])
+def search():
+    zip_code = request.form.get("zipcode")
     address = search_address(zip_code.replace("-", ""))
-    print(address)
+    return address
 
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=True)
