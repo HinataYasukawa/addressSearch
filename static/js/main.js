@@ -31,6 +31,11 @@ function updateHistory(count, postcode, address) {
     tdCount.textContent = count;
     tdPostcode.textContent = postcode;
     tdAddress.textContent = address;
+
+    tdPostcode.addEventListener('click', function() {
+        document.getElementById('postcode').value = this.textContent;
+        search(postcode);
+    });
     
     tr.appendChild(tdCount);
     tr.appendChild(tdPostcode);
