@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template
 import csv
 
 app = Flask(__name__)
+search_history = []
 
 
 def find_address(postcode):
@@ -17,7 +18,13 @@ def find_address(postcode):
 def search():
     postcode = request.args.get("postcode", "")
     address = find_address(postcode)
+    search_history.append({"postcode": postcode, "address": address})
     return jsonify({"address": address})
+
+
+@app.route("/history", methods=["GET"])
+def history():
+    return jsonify(search_history)
 
 
 @app.route("/")
