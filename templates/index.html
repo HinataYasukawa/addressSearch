@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Zip Code Search</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>郵便番号から住所を検索</title>
     <script src="/static/js/main.js"></script>
 </head>
 <body>
-    <h1>Zip Code Search</h1>
-    <input type="text" id="zipcode" placeholder="Enter a zip code">
-    <button id="search-button">Search</button>
-    <p id="result"></p>
+    <h1>郵便番号から住所を検索</h1>
+    <input id="postcode" type="text" placeholder="郵便番号を入力">
+    <button onclick="search()">検索</button>
+    <p id="address"></p>
+    <button id="openMap" style="display: none;" onclick="openMap()">Google Mapで表示</button>
 </body>
 </html>
