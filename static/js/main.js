@@ -1,14 +1,23 @@
 let searchCount = 0;
 
-async function search() {
+async function search(event) {
+    event.preventDefault();
+
     let postcode = document.getElementById('postcode').value;
     let response = await fetch('/search?postcode=' + postcode);
     let data = await response.json();
     document.getElementById('address').textContent = data.address;
-    document.getElementById('openMap').style.display = "block";
+
+    if (data.address !== "Address not found") {
+        document.getElementById('openMap').style.display = "block";
+    } else {
+        document.getElementById('openMap').style.display = "none";
+    }
 
     searchCount += 1;
     updateHistory(searchCount, postcode, data.address);
+
+    document.getElementById('postcode').value = '';
 }
 
 function updateHistory(count, postcode, address) {

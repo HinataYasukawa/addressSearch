@@ -1,23 +1,40 @@
-.container {
-    display: flex;
-    justify-content: space-between;
+* {
+    box-sizing: border-box;
 }
 
-.search-panel {
+body {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+#searchForm {
     width: 40%;
 }
 
-.history-panel {
-    width: 55%;
+.history {
+    width: 50%;
+    overflow: auto;
 }
 
 table {
     width: 100%;
-    text-align: left;
     border-collapse: collapse;
 }
 
-th, td {
+td, th {
+    border: 1px solid #ddd;
     padding: 8px;
-    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
 }
